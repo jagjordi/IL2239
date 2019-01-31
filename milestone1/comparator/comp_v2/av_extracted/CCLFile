@@ -1,0 +1,56 @@
+#
+# OPTION COMMAND FILE created by Cadence Quantus QRC Extraction Version 14.2.3-s099 from CCL
+#
+capacitance \
+	 -decoupling_factor 1.0 \
+	 -ground_net "VSS"
+device_reduction \
+	 -m_factor infinite
+extract \
+	 -selection "all" \
+	 -type "rc_coupled"
+extraction_setup \
+	 -array_vias_spacing auto \
+	 -macro_cells_type "default" \
+	 -max_fracture_length infinite \
+	 -max_fracture_length_unit "MICRONS" \
+	 -max_via_array_size \
+		"auto" \
+	 -net_name_space "LAYOUT"
+filter_cap \
+	 -exclude_self_cap true
+filter_coupling_cap \
+	 -coupling_cap_threshold_absolute 0.01 \
+	 -coupling_cap_threshold_relative 0.001
+filter_res \
+	 -min_res 0.001
+input_db -type assura \
+	 -design_cell_name "comp_v2 layout SAR_ADC" \
+	 -directory_name "/home/pancha/IL2239/LVSruns" \
+	 -format "DFII" \
+	 -run_name "LVSruns"
+log_file \
+	 -file_name "/home/pancha/IL2239/LVSruns/qrc.LVSruns.log"
+output_db -type extracted_view \
+	 -cap_component "pcapacitor" \
+	 -cap_property_name "c" \
+	 -enable_cellview_check false \
+	 -include_cap_model "true" \
+	 -include_parasitic_cap_model "comment" \
+	 -include_parasitic_res_model "comment" \
+	 -include_res_model "true" \
+	 -res_component "presistor" \
+	 -res_property_name "r" \
+	 -view_name "av_extracted"
+output_setup \
+	 -directory_name "/home/pancha/IL2239/LVSruns" \
+	 -temporary_directory_name "LVSruns"
+process_technology \
+	 -technology_corner \
+		"default" \
+	 -technology_library_file "/home/pancha/IL2239/assura_tech.lib" \
+	 -technology_name "lf150" \
+	 -temperature \
+		25.0
+
+

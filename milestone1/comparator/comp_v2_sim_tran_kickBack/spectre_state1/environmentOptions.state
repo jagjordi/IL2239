@@ -1,0 +1,14 @@
+(envOpts analysisOrder) ("tran" "dc")
+(envOpts autoDisplay) t
+(envOpts cmd64bit) nil
+(envOpts enableArclength) nil
+(envOpts firstRun) t
+(envOpts paramRangeCheckFile) ""
+(envOpts pllPlugin) ""
+(envOpts pllWizardinfo) ""
+(envOpts printComments) nil
+(envOpts restart) ""
+(envOpts savestate) ""
+(envOpts sst2usecolon) nil
+(envOpts userCmdLineOption) ""
+(envOpts vcoType) ""

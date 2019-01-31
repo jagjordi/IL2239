@@ -1,0 +1,17 @@
+//Revision 1
+//NOTE
+// Default austriamicrosystems template for spectre
+//END_NOTE
+
+config comp_v2_sim_tran_kickBack;
+design IL2239_comparator.comp_v2_sim_tran_kickBack:schematic;
+liblist myLib;
+
+viewlist spectre, cmos_sch, schematic, veriloga, ahdl;
+stoplist spectre;
+
+
+cell IL2239_comparator.comp_v2 binding :av_extracted;
+
+
+endconfig
