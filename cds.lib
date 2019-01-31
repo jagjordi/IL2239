@@ -1,0 +1,4 @@
+## PDK specific entries do not touch --
+INCLUDE $LF150_HOME/tools/setup/cds.lib
+## END PDK specific entries do not touch --
+DEFINE comparator /afs/kth.se/home/j/o/jordiag/IL2239/milestone1/comparator

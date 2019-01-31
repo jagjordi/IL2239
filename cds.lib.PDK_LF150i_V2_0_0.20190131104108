@@ -1,0 +1,2 @@
+SOFTINCLUDE /afs/kth.se/pkg/designkits/ekt/cdc/installs/IC615/share/cdssetup/cds.lib
+DEFINE comparator /afs/kth.se/home/j/o/jordiag/IL2239/milestone1/comparator

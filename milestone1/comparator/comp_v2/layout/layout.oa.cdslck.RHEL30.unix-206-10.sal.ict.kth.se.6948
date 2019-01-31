@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      jordiag
+HostName                       unix-206-10.sal.ict.kth.se
+ProcessIdentifier              6948
+ProcessCreationTime_UTC        1548927736
+ProcessCreationTime_Readable   Thu Jan 31 10:42:16 2019 CET
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /afs/kth.se/home/j/o/jordiag/IL2239/milestone1/comparator/comp_v2/layout/layout.oa.cdslck
+TimeEditLocked                 Thu Jan 31 11:46:55 2019 CET

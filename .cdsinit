@@ -1,0 +1,55 @@
+;; PDK specific entries do not touch --
+
+LF150_HOME = getShellEnvVar( "LF150_HOME" )
+
+defun( LFinitDisplayError ( t_banner t_errorMsg )
+;; display a dialog box message about LF150_HOME failure.
+    when( t_errorMsg
+        warn( t_errorMsg )
+        hiDisplayAppDBox(
+            ?name           'LF150_HOME_error
+            ?dboxBanner     t_banner
+            ?dboxText       t_errorMsg
+            ?dialogType     hicErrorDialog
+            ?dialogStyle    'modal
+            ?buttonLayout   'Close
+        )
+    )
+) ;; close defun
+
+;; getting LF150_HOME directory
+if( !LF150_HOME || LF150_HOME == "" then
+  LFinitDisplayError(
+    "LF150_HOME Error"
+    strcat( 
+      "Environment variable LF150_HOME not set.\n" 
+      "This will result in an incomplete customization for LF150.\n" 
+    )
+  )
+else
+  if( !isDir( LF150_HOME ) then
+    LFinitDisplayError(
+      "LF150_HOME Error"
+      strcat( 
+	"Environment variable LF150_HOME is not a directory.\n"
+	"This will result in an incomplete customization for LF150.\n" 
+      )
+    )
+  else
+    if( !isReadable( LF150_HOME ) then
+      LFinitDisplayError( 
+        "LF150_HOME Error"
+	strcat( 
+	  "Directory LF150_HOME is not readable.\n"
+	  "This will result in an incomplete customization for LF150.\n" 
+	)
+      )
+    else
+      loadi( strcat( LF150_HOME "/tools/setup/.cdsinit" ) )
+    ) ;; close unless isReadable   
+  ) ;; close if isDir
+) ;; close if getShellEnvVar
+
+;;) ;; close let
+
+;; END PDK specific entries do not touch --
