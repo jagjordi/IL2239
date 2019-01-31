@@ -6,8 +6,8 @@ tmp1 = make_sevVariableStruct()
 (unless tmp1
 tmp1 = (ncons nil)
 )
-tmp1->name = "Vin"
-tmp1->expression = "400m"
+tmp1->name = "Cin"
+tmp1->expression = "1p"
 tmp1->index = 1
 (unless tmp2
 tmp2 = make_sevVariableStruct()
@@ -15,8 +15,8 @@ tmp2 = make_sevVariableStruct()
 (unless tmp2
 tmp2 = (ncons nil)
 )
-tmp2->name = "Vcm"
-tmp2->expression = "500m"
+tmp2->name = "fclk"
+tmp2->expression = "100M"
 tmp2->index = 2
 (unless tmp3
 tmp3 = make_sevVariableStruct()
@@ -24,8 +24,8 @@ tmp3 = make_sevVariableStruct()
 (unless tmp3
 tmp3 = (ncons nil)
 )
-tmp3->name = "Cin"
-tmp3->expression = "1p"
+tmp3->name = "Vcm"
+tmp3->expression = "700m"
 tmp3->index = 3
 (unless tmp4
 tmp4 = make_sevVariableStruct()
@@ -33,8 +33,8 @@ tmp4 = make_sevVariableStruct()
 (unless tmp4
 tmp4 = (ncons nil)
 )
-tmp4->name = "fclk"
-tmp4->expression = "20M"
+tmp4->name = "Vin"
+tmp4->expression = "250m"
 tmp4->index = 4
 list(tmp1 tmp2 tmp3 tmp4)
 )

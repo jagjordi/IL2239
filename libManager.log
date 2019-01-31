@@ -1,6 +1,6 @@
 \o Program:		@(#)$CDS: libManager version 32.10 06/27/2012 10:34 (cat91amd) $
 \o Sub version:		sub-version  s009 
-\o Arguments:		-mpssession virtuoso6948 -mpshost unix-206-10.sal.ict.kth.se 
+\o Arguments:		-mpssession virtuoso10140 -mpshost unix-206-10.sal.ict.kth.se 
 \o Working Directory:	unix-206-10.sal.ict.kth.se:/afs/kth.se/home/j/o/jordiag/IL2239
 \o 64-bit offsets
 \o Qt version: 		4.5.3
@@ -13,41 +13,36 @@
 \o MPS service: map window
 \o Library Manager customization server connected.
 \a cdsLibManager->libListBox->value = "comparator"
-\a cdsLibManager->libListBox->value = nil
-\a nrListItemAction(cdsLibManager->libListBox "comparator" 0)
 \a cdsLibManager->libLineEdit->value = "comparator"
-\a cdsLibManager->cellListBox->value = "comp_init_sim_tran_kickBack"
-\a cdsLibManager->cellLineEdit->value = "comp_init_sim_tran_kickBack"
+\a cdsLibManager->cellListBox->value = "comp_v2"
+\a cdsLibManager->cellListBox->value = "comp_v2_sim_tran"
+\a cdsLibManager->cellLineEdit->value = "comp_v2_sim_tran"
 \a cdsLibManager->viewListBox->value = "schematic"
 \a cdsLibManager->viewLineEdit->value = "schematic"
 \o MPS request: edit design
 \a nrListItemAction(cdsLibManager->gdmXTView 0 0)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->cellListBox->value = "comp_v2"
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
 \a cdsLibManager->viewLineEdit->value = ""
 \a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "schematic"
-\a cdsLibManager->viewLineEdit->value = "schematic"
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->libLineEdit->value = ""
+\a cdsLibManager->libListBox->value = "comparator"
+\a cdsLibManager->libLineEdit->value = "comparator"
 \a cdsLibManager->cellListBox->value = "comp_v2_sim_tran"
+\a cdsLibManager->cellLineEdit->value = "comp_v2_sim_tran"
+\a cdsLibManager->viewListBox->value = "schematic"
+\a cdsLibManager->viewLineEdit->value = "schematic"
 \a cdsLibManager->viewLineEdit->value = ""
 \a cdsLibManager->viewListBox->value = nil
 \a cdsLibManager->viewListBox->value = "schematic"
 \a cdsLibManager->viewLineEdit->value = "schematic"
-\a cdsLibManager->cellListBox->value = "comp_v2_sim_tran_kickBack"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "schematic"
-\a cdsLibManager->viewLineEdit->value = "schematic"
-\a cdsLibManager->cellListBox->value = "comp_init_sim_tran_kickBack"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "schematic"
-\a cdsLibManager->viewLineEdit->value = "schematic"
-\a cdsLibManager->cellLineEdit->value = "comp_init_sim_tran_kickBack"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
 \a nrSetCurrentWindow(cdsLibManager)
 \a cdsLibManager->cellListBox->value = "comp_v2_sim_tran_kickBack"
 \a cdsLibManager->viewLineEdit->value = ""
@@ -64,52 +59,15 @@
 \a nrSetCurrentWindow(cdsLibManager)
 \a nrSetCurrentWindow(cdsLibManager)
 \a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->cellListBox->value = "comp_v2"
-\a cdsLibManager->viewLineEdit->value = ""
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
 \a cdsLibManager->viewListBox->value = nil
 \a cdsLibManager->viewListBox->value = "schematic"
-\a cdsLibManager->viewLineEdit->value = "schematic"
-\a cdsLibManager->cellLineEdit->value = "comp_v2"
-\a cdsLibManager->viewListBox->value = "layout"
-\a cdsLibManager->viewLineEdit->value = "layout"
-\a cdsLibManager->viewListBox->value = "symbol"
-\a cdsLibManager->viewLineEdit->value = "symbol"
-\a cdsLibManager->viewListBox->value = "verilogams"
-\a cdsLibManager->viewLineEdit->value = "verilogams"
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "verilogams"
 \o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 5 0)
+\a nrListItemAction(cdsLibManager->gdmXTView 1 0)
 \a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a lmgrLogShowPopup("mainListPopup2" 46 88 2 "verilogams")
-\a cdsLibManager->fileOpenWithButton->value = t
-\o MPS request: edit design
-\a cdsLibManager->libListBox->value = nil
-\a cdsLibManager->cellListBox->value = nil
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->cellLineEdit->value = ""
-\a cdsLibManager->libLineEdit->value = ""
-\a cdsLibManager->libListBox->value = "comparator"
-\a cdsLibManager->libLineEdit->value = "comparator"
-\a cdsLibManager->cellListBox->value = "comp_v2"
-\a cdsLibManager->cellLineEdit->value = "comp_v2"
-\a cdsLibManager->viewListBox->value = "verilogams"
-\a cdsLibManager->viewLineEdit->value = "verilogams"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "verilogams"
-\a cdsLibManager->viewLineEdit->value = "verilogams"
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->viewListBox->value = "layout"
-\a cdsLibManager->viewLineEdit->value = "layout"
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "layout"
-\o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 2 0)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetWindowVisibility(cdsLibManager "hide")
+\o libManager is exiting.
+\a exit(0)

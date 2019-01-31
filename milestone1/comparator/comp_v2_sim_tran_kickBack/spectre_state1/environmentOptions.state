@@ -1,4 +1,4 @@
-(envOpts analysisOrder) ("tran" "dc")
+(envOpts analysisOrder) ("tran")
 (envOpts autoDisplay) t
 (envOpts cmd64bit) nil
 (envOpts enableArclength) nil
@@ -10,5 +10,7 @@
 (envOpts restart) ""
 (envOpts savestate) ""
 (envOpts sst2usecolon) nil
+(envOpts stopViewList) ("spectre")
+(envOpts switchViewList) ("spectre" "cmos_sch" "cmos.sch" "schematic" "veriloga")
 (envOpts userCmdLineOption) ""
 (envOpts vcoType) ""
