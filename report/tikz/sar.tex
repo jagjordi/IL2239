@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+ \draw[-latex] (0,0) node[left] {$V\subb{in}$} --++ (1,0) node[draw, rectangle, minimum height=3em, anchor=west, align=center] (sh) {Sample \&\\Hold};
+ \draw (sh.east) --++ (1,0) node[op amp, noinv input up, anchor=+] (opamp) {};
+ \draw[-latex] (opamp.out) --++ (1,0) node[draw, rectangle, minimum height=3em, anchor=west, align=center] (sar) {Successive\\Approximation\\Register};
+ \draw (sar.east) --++ (1,0) --++ (0,-2) coordinate (a) to[dac,>] (a-|opamp.-) -- (opamp.-);
+ \draw (sar.east) ++ (1,0) to[short,*-] ++ (1,0) node[above] {Data\textless 4:0\textgreater};
+ \draw[-latex] (sh.south) ++ (0,-0.5) node[below, align=center] {Sampling\\rate} -- (sh.south);
+ \draw[-latex] (opamp.down) ++ (0,-0.5) node[below] {CLK1} -- (opamp.down);
+ \draw[-latex] (sar.south) ++ (0,-0.5) node[below] {CLK2} -- (sar.south);
+ \draw[-latex] (7.2,-2.99) ++ (0,-0.5) node[below] {CLK3} --++ (0,0.5);
+\end{tikzpicture} 

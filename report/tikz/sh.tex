@@ -1,0 +1,3 @@
+\begin{tikzpicture}
+ \draw (0,0) node[ground]{} to[european voltage source, v=$V\subb{in}$] ++ (0,2) --++(1,0) node[nmos, anchor=S, rotate=-90](q) {} (q.D)--++ (1,0) to[C, v^<=$V\subb{out}$] ++(0,-2) node[ground] {} (q.G) node[above] {$\varphi$};
+\end{tikzpicture} 

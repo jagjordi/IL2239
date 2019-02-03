@@ -1,0 +1,17 @@
+\begin{tikzpicture}[trim axis left, trim axis right]
+   \begin{axis}[
+     x filter/.code={\pgfmathdivide{#1}{1e-9}},
+     y filter/.code={\pgfmathdivide{#1}{1e-3}},
+     width=\textwidth, height=0.6\textwidth,
+     enlarge x limits=0,
+     xlabel=\si{\ns},
+     ylabel=$V\subb{in}^+-V\subb{in}^-\,/\,\si{\mV}$,
+     legend cell align={left},
+     grid=both, minor grid style=dotted, minor y tick num = 4, minor x tick num=3,
+    ]
+    \addplot [thick, red] table[x=diff X, y=diff Y, col sep=comma] {./data/m1_kickback.csv};
+    \draw[thick, dashed] (axis cs:10,500.62) --++ (axis direction cs:2,0);
+    \draw[thick, dashed] (axis cs:15,505.82) --++ (axis direction cs:-3,0);
+    \draw[latex-latex] (12,500.62) -- (12,505.82) node[midway, right] {Kickback};
+   \end{axis}
+  \end{tikzpicture}

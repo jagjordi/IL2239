@@ -1,0 +1,18 @@
+\begin{tikzpicture}[trim axis left, trim axis right]
+   \begin{axis}[
+     x filter/.code={\pgfmathdivide{#1}{1e-9}},
+     width=\textwidth, height=0.6\textwidth,
+     enlarge x limits=0,
+     xlabel=\si{\ns},
+     ylabel=\si{\V},
+     legend cell align={left},
+     grid=both, minor grid style=dotted, minor y tick num = 5, minor x tick num=3,
+    ]
+    \addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_transient.csv};
+    \addlegendentry{Input};
+    \addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_transient.csv};
+    \addlegendentry{Reference};
+    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_transient.csv};
+    \addlegendentry{Output};
+   \end{axis}
+  \end{tikzpicture}
