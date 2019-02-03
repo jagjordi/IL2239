@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+`timescale 10ps/1ps
 `include "constants.vams"
 `include "disciplines.vams"
 
@@ -18,7 +18,7 @@ module comp_v2 ( outn, outp, CLK, VDD, VSS, in1, in2 );
 
     always @(posedge CLK) 
     begin
-        #1	
+        #5	
         outn = 0;
         outp = 0;
     end
@@ -26,13 +26,13 @@ module comp_v2 ( outn, outp, CLK, VDD, VSS, in1, in2 );
     begin
         if (V(in1) > V(in2)) 
         begin
-            #1		
+            #57		
             outn = 1;
             outp = 0;
         end	
         else 
         begin
-            #1		
+            #57		
             outn = 0;
             outp = 1;
         end

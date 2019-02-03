@@ -16,8 +16,11 @@
 	    \addlegendentry{Reference};
 	    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_kickback.csv};
 	    \addlegendentry{Output};
-	    \coordinate (spypoint) at (axis cs:5,0.95);
+	    \coordinate (spypoint) at (axis cs:5.1,0.95);
 	    \coordinate (spyloc) at (axis cs:7,0.3);
+	    \coordinate (spypoint2) at (axis cs:15.1,0.45);
+	    \coordinate (spyloc2) at (axis cs:12,1.1);
 	   \end{axis}
 	   \spy[size=2cm] on (spypoint) in node at (spyloc);
+	   \spy[size=2cm] on (spypoint2) in node at (spyloc2);
 	  \end{tikzpicture}
