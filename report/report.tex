@@ -1,15 +1,31 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{geometry}
+ \geometry{%
+    a4paper,%
+    left=25mm,right=25mm,%
+    top=25mm,bottom=25mm,%
+ }
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{hyperref}
+ \hypersetup{%
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=blue
+ }
 \usepackage{tikz}
-  \usetikzlibrary{shapes, calc, intersections, spy}
+  \usetikzlibrary{shapes, calc, intersections, spy, external}
+  \tikzexternalize[prefix=img/extern/]  % requieres -shell-escape 
 \usepackage{pgfplots}
   \pgfplotsset{compat=1.16}
 \usepackage{circuitikz}
 \usepackage{siunitx}
+\usepackage{minted}
+ \setminted{linenos, breaklines}
 
 \tikzset{new spy style/.style={spy scope={%
  magnification=5,
@@ -22,6 +38,7 @@
 \newcommand*{\subb}[1]{\ensuremath{_{\mathrm{#1}}}}
 \newcommand*{\supp}[1]{\ensuremath{^{\mathrm{#1}}}}
 \renewcommand*{\j}{\ensuremath{{\mathrm{j}}}}
+\renewcommand\listingscaption{Sample Code}
 
 \title{IL2239 Course Project}
 \author{Jordi Altayó \\\texttt{jordiag@kth.se}\and Björn Sunedahl\\\texttt{bjorn@kth.se}}
@@ -31,130 +48,141 @@
 \begin{document}
  \maketitle
  \section*{Introduction}
+ The goal of this project is to design a SAR-ADC (Successive Approximation Register Analog to Digital Converter) that meets the following specifications:
+ \begin{itemize}
+  \item Comparator clock: 100 MHz
+  \item $\mathrm{SNDR} > 28$ dB, $\mathrm{SFDR} > 37$ dB
+  \item Technology: 150 nm CMOS
+  \item Supply voltage: 1.8 V
+  \item Input amplitude $V\subb{in}=\SI{0.5}{\volt_{pp}}$
+  \item A common-mode input voltage in the range $0 \ge V\subb{in,cm} \ge 1.8$ V
+  \item Voltage reference value: $V\subb{ref}<1.8$ V
+  \item Switching energy for a full conversion cycle: \textless 30 pJ for $V\subb{in}=300$ mV (DC)
+  \item Resolution: 5 bits
+ \end{itemize}
+ The circuit topology for the SAR-ADC is given in \autoref{fig:sar}.\bigskip
+
+ \noindent The project will be carried out in several steps (milestones).
+
+ \begin{figure}[!h]
+  \centering
+  \tikzsetnextfilename{sar}
+  \input{tikz/sar}
+  \caption{Block diagram of the SAR-ADC}
+  \label{fig:sar}
+ \end{figure}
+
  \section*{Milestone 1}
- \subsection*{Transient analysis}
- \begin{figure}[h]
+ \setcounter{section}{1}
+ For this milestone the goals are:
+ \begin{itemize}
+  \item Design a comparator for the given clock frequency.
+  \item Choose a common-mode input voltage for the comparator, taking into account the properties of the sample \& hold circuit.
+ \end{itemize}
+ The comparator used will be of the StrongARM latch topology. To assist us with the design, template projects in Cadence Virtuoso were provided to us.\bigskip
+
+ \noindent The schematic for the StrongARM latch comparator is given in \autoref{fig:sar_schematic}.
+ In addition to the comparator schematic, two different testbenches (shown in Figures \ref{fig:tb1}-\ref{fig:tb2}) were provided.
+
+ \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/sch}
+  \caption{Schematic of the SAR comparator}
+  \label{fig:sar_schematic}
+ \end{figure}
+ 
+ \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/tb1}
+  \caption{Testbench of the SAR comparator}
+  \label{fig:tb1}
+ \end{figure}
+
+ The purpose of the first testbench in \autoref{fig:tb1} is to verify the basic functionality of the comparator. That is, that $V\subb{out}^-=V\subb{DD}$ and $V\subb{out}^+=0$ when $V\subb{in}^->V\subb{in}^+$, and viceversa. The outputs are changed on the negative edge of the input clock and will retain their values during the entire negative half of the clock cycle. On the positive edge of the clock cycle, both outputs will be changed 0 and these values will be retained during the entire positive half of the clock cycle.
+
+ \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/tb2}
+  \caption{Testbench of the SAR comparator}
+  \label{fig:tb2}
+ \end{figure}
+
+The second testbench in \autoref{fig:tb2} is mainly useful for determining the amount of kickback noise. Kickback noise is a seen as a voltage drop or spike on the inputs as a result of capacitive coupling between the gate-drain and gate-source of transistors M1 and M2 in Fig. 1. This is an undesirable effect and can cause incorrect comparison results. For a comparator used in a SAR-ADC, the kickback noise must be less than $0.5/2^n$V, where $n$ is the desired amounts of bits of resolution that the ADC must be able to handle, in our case 5.\bigskip
+
+In order to determine the common mode input voltage, we have to look at the sample-and-hold circuit which connects to in1 of the comparator.
+
+ \begin{figure}[!h]
+  \centering
+  \tikzsetnextfilename{sh}
+  \input{tikz/sh}
+  \caption{Simple sample \& hold circuit}
+  \label{fig:sh}
+ \end{figure}
+ 
+ In \autoref{fig:sh} a simple sample-and-hold circuit is shown. In our case $V\subb{in}$ will be equal to $V\subb{cm}+V\subb{sample}$, that is, a common-mode voltage plus the voltage we are interested in sampling. in1 of the comparator is connected to the capacitor. The transistor used as a switch can be considered to be an n-channel MOSFET.
+
+ The gate of the transistor will be driven by VDD=1.8, and in order for it conduct, the Vgs voltage must be equal to or greater than the threshold voltage. We can make the assumption that Vth=0.7 V. Further, we can make the assumption that the voltage drop between the drain and source is negligible.
+
+ It’s easy to see that the voltage across the capacitor can’t be higher than 1.1 V, or else the transistor won’t conduct. Since Vsample will have a swing of \SI{0.5}{\volt_{pp}}, the maximum voltage present at the drain of the transistor will be $V\subb{cm} + 0.25$ V.
+
+ Thus, to determine a suitable value for the common mode voltage, we use the following relation:
+ \begin{equation}
+  V\subb{cm} + 0.25=1.1
+ \end{equation}
+
+ Which gives a maximum common mode voltage of Vcm=0.85 V. In order to have a little more margin, we choose $V\subb{cm}=0.7$ V.
+
+%Performing the simulation with testbench #2, using this common mode voltage and maximum value of \suVsample, we get:
+
+ \subsection{Transient analysis}
+ To verify the functionality of our circuit we perform a transient simulation where we expect to see the ouput of the comparator changing to high according to the relation $V\subb{in}^+\lessgtr V\subb{in}^-$.
+
+ \begin{figure}[!h]
   \centering
   \caption{Transient analysis of the SAR comparator}
   \label{fig:transient}
-  \begin{tikzpicture}[trim axis left, trim axis right]
-   \begin{axis}[
-     x filter/.code={\pgfmathdivide{#1}{1e-9}},
-     width=\textwidth,
-     enlarge x limits=0,
-     xlabel=\si{\ns},
-     ylabel=\si{\V},
-     legend cell align={left},
-     grid=both, minor grid style=dotted, minor y tick num = 5, minor x tick num=3,
-    ]
-    \addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_transient.csv};
-    \addlegendentry{Input};
-    \addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_transient.csv};
-    \addlegendentry{Reference};
-    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_transient.csv};
-    \addlegendentry{Output};
-   \end{axis}
-  \end{tikzpicture}
+  \tikzsetnextfilename{transient}
+  \input{tikz/transient}
  \end{figure}
 
- \subsection*{Kickback simulation}
- \begin{figure}[h]
+ In \autoref{fig:transient} we can see the results of the transient simulation for two periods of a \SI{4}{\MHz} input sine wave. It is easy to check that the functionality of the comparatoris as expected.
+ \subsection{Kickback simulation}
+ Untill this point, the effects of the capacitive coupling between the input and intermediate nodes of the comaprator has been ignored. In reality this effect can lead into significant errors due to the effect of the kickback.
+
+ \begin{figure}[!h]
   \centering
   \caption{Close-up on the kickback noise effects}
   \label{fig:kickback_closeup}
-  \begin{tikzpicture}[trim axis left, trim axis right, new spy style]
-   \begin{axis}[
-     x filter/.code={\pgfmathdivide{#1}{1e-9}},
-     width=\textwidth,
-     enlarge x limits=0,
-     xlabel=\si{\ns},
-     ylabel=\si{\V},
-     legend cell align={left},
-     grid=both, minor grid style=dotted, minor y tick num = 4, minor x tick num=3,
-    ]
-    \addplot [thick, orange] table[x=/CLK X, y=/CLK Y, col sep=comma] {./data/m1_kickback.csv};
-    \addlegendentry{Clock};
-    \addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_kickback.csv};
-    \addlegendentry{Input};
-    \addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_kickback.csv};
-    \addlegendentry{Reference};
-    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_kickback.csv};
-    \addlegendentry{Output};
-    \coordinate (spypoint) at (axis cs:5,0.95);
-    \coordinate (spyloc) at (axis cs:7,0.3);
-   \end{axis}
-   \spy[size=2cm] on (spypoint) in node at (spyloc);
-  \end{tikzpicture}
+  \tikzsetnextfilename{kickback_closeup}
+  \input{tikz/kickback_closeup}
  \end{figure}
- \begin{figure}[h]
+
+ \autoref{fig:kickback_closeup} shows the effect of the so called kickback. As we can see the inputs, which are not supposed to change, present a significant variation due to the capacitive coupling through the parasitic capacitances of the transistors.
+
+ \begin{figure}[!h]
   \centering
   \caption{Differential error generated by the kickback}
   \label{fig:kickback_diff}
-  \begin{tikzpicture}[trim axis left, trim axis right]
-   \begin{axis}[
-     x filter/.code={\pgfmathdivide{#1}{1e-9}},
-     y filter/.code={\pgfmathdivide{#1}{1e-3}},
-     width=\textwidth,
-     enlarge x limits=0,
-     xlabel=\si{\ns},
-     ylabel=$V\subb{in}^+-V\subb{in}^-\,/\,\si{\mV}$,
-     legend cell align={left},
-     grid=both, minor grid style=dotted, minor y tick num = 4, minor x tick num=3,
-    ]
-    \addplot [thick, red] table[x=diff X, y=diff Y, col sep=comma] {./data/m1_kickback.csv};
-    \draw[thick, dashed] (axis cs:10,500.62) --++ (axis direction cs:2,0);
-    \draw[thick, dashed] (axis cs:15,505.82) --++ (axis direction cs:-3,0);
-    \draw[latex-latex] (12,500.62) -- (12,505.82) node[midway, right] {Kickback};
-   \end{axis}
-  \end{tikzpicture}
+  \tikzsetnextfilename{kickback_diff}
+  \input{tikz/kickback_diff}
  \end{figure}
- \subsection*{Noise simulation}
- \begin{figure}[h]
+
+ \texttt{(ymax((vtime('tran "/input") - vtime('tran "/reference"))) - (2 * VAR("Vin")))}
+ \subsection{Noise simulation}
+
+ \begin{figure}[!h]
   \centering
-  \caption{Transient analysis of the SAR comparator}
-  \label{fig:transient}
-  \begin{tikzpicture}[trim axis left, trim axis right]
-   \begin{axis}[
-     x filter/.code={\pgfmathdivide{#1}{1e-9}},
-     width=\textwidth,
-     enlarge x limits=0,
-     xlabel=\si{\ns},
-     ylabel=\si{\V},
-     legend cell align={left},
-     grid=both, minor grid style=dotted, minor y tick num = 5, minor x tick num=3,
-    ]
-    %\addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_noise-0.01.csv};
-    %\addlegendentry{Input};
-    %\addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_noise-0.01.csv};
-    %\addlegendentry{Reference};
-    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_noise-0.01.csv};
-    \addlegendentry{Output};
-   \end{axis}
-  \end{tikzpicture}
+  \caption{Transient analysis with noise}
+  \label{fig:noise}
+  \tikzsetnextfilename{noise}
+  \input{tikz/noise}
  \end{figure}
- \begin{figure}[h]
-  \centering
-  \caption{Transient analysis of the SAR comparator}
-  \label{fig:transient}
-  \begin{tikzpicture}[trim axis left, trim axis right]
-   \begin{axis}[
-     x filter/.code={\pgfmathdivide{#1}{1e-9}},
-     width=\textwidth,
-     enlarge x limits=0,
-     xlabel=\si{\ns},
-     ylabel=\si{\V},
-     legend cell align={left},
-     grid=both, minor grid style=dotted, minor y tick num = 5, minor x tick num=3,
-    ]
-    %\addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_noise-0.01.csv};
-    %\addlegendentry{Input};
-    %\addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_noise-0.01.csv};
-    %\addlegendentry{Reference};
-    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_noise-0.05.csv};
-    \addlegendentry{Output};
-   \end{axis}
-  \end{tikzpicture}
- \end{figure}
+
+ \subsection{HDL Description}
+ \begin{listing}
+  \caption{Verilog-AMS description of the comparator}
+  \inputminted{verilog}{../milestone1/comparator/comp_v2/verilogams/verilog.vams}
+ \end{listing}
  \section*{Milestone 2}
  \section*{Milestone 3}
  \section*{Milestone 4}
