@@ -41,7 +41,7 @@
 \renewcommand\listingscaption{Sample Code}
 
 \title{IL2239 Course Project}
-\author{Jordi Altayó \\\texttt{jordiag@kth.se}\and Björn Sunedahl\\\texttt{bjorn@kth.se}}
+\author{Jordi Altayó \\\texttt{jordiag@kth.se}\and Björn Sunedahl\\\texttt{sunedahl@kth.se}}
 \date{January 2019}
 
 % please, use 1 space as indentation
@@ -55,7 +55,7 @@
   \item Technology: 150 nm CMOS
   \item Supply voltage: 1.8 V
   \item Input amplitude $V\subb{in}=\SI{0.5}{\volt_{pp}}$
-  \item A common-mode input voltage in the range $0 \ge V\subb{in,cm} \ge 1.8$ V
+  \item A common-mode input voltage in the range $0 \le V\subb{in,cm} \le 1.8$ V
   \item Voltage reference value: $V\subb{ref}<1.8$ V
   \item Switching energy for a full conversion cycle: \textless 30 pJ for $V\subb{in}=300$ mV (DC)
   \item Resolution: 5 bits
@@ -107,7 +107,7 @@
   \label{fig:tb2}
  \end{figure}
 
-The second testbench in \autoref{fig:tb2} is mainly useful for determining the amount of kickback noise. Kickback noise is a seen as a voltage drop or spike on the inputs as a result of capacitive coupling between the gate-drain and gate-source of transistors M1 and M2 in Fig. 1. This is an undesirable effect and can cause incorrect comparison results. For a comparator used in a SAR-ADC, the kickback noise must be less than $0.5/2^n$V, where $n$ is the desired amounts of bits of resolution that the ADC must be able to handle, in our case 5.\bigskip
+The second testbench in \autoref{fig:tb2} is mainly useful for determining the amount of kickback noise. Kickback noise is a seen as a voltage drop or spike on the inputs as a result of capacitive coupling between the gate-drain and gate-source of transistors M1 and M2 in Fig. 1. This is an undesirable effect and can cause incorrect comparison results. For a comparator used in a SAR-ADC, the kickback noise must be less than $\frac{0.5/2^n}{2}$V, where $n$ is the desired amounts of bits of resolution that the ADC must be able to handle, in our case 5.\bigskip
 
 In order to determine the common mode input voltage, we have to look at the sample-and-hold circuit which connects to in1 of the comparator.
 
@@ -130,7 +130,7 @@ In order to determine the common mode input voltage, we have to look at the samp
   V\subb{cm} + 0.25=1.1
  \end{equation}
 
- Which gives a maximum common mode voltage of Vcm=0.85 V. In order to have a little more margin, we choose $V\subb{cm}=0.7$ V.
+ Which gives a maximum common mode voltage of $V\subb{cm}=0.85$ V. In order to have a little more margin, we choose $V\subb{cm}=0.7$ V.
 
 %Performing the simulation with testbench #2, using this common mode voltage and maximum value of \suVsample, we get:
 
@@ -206,7 +206,19 @@ In order to determine the common mode input voltage, we have to look at the samp
   \caption{Final layout of the ADC}
   \label{fig:layout}
  \end{figure}
- %\section*{Milestone 2}
+ \section*{Milestone 2}
+ \setcounter{section}{2}
+ \setcounter{subsection}{0}
+ In this milestone we will choose the reference voltage that the SAR ADC is going to use as well as calculating the resolution of it.
+ \subsection{Resolution of the SAR ADC}
+ \begin{equation}
+  N\subb{eff}=\frac{\mathrm{SNR}-1.76}{6.02}
+ \end{equation}
+ \subsection{Voltage reference selection}
  %\section*{Milestone 3}
+ %\setcounter{section}{3}
+ %\setcounter{subsection}{0}
  %\section*{Milestone 4}
+ %\setcounter{section}{4}
+ %\setcounter{subsection}{0}
 \end{document}
