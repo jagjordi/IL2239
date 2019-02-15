@@ -94,3 +94,9 @@ export OA_PLUGIN_PATH="${CNI_ROOT}/quickstart"
 export PATH="${CNI_PLAT_ROOT}/3rd/bin:${CNI_PLAT_ROOT}/bin:${CNI_ROOT}/bin:${PATH}"
 export PYTHONHOME="${CNI_PLAT_ROOT}/3rd"
 export PYTHONPATH="${CNI_ROOT}/pylib:${CNI_PLAT_ROOT}/lib:${PYTHONPATH}"
+
+# Set INCISIVE tools #
+export IUSDIR=/afs/kth.se/pkg/designkits/ekt/cdc/installs/INCISIVE142
+export PATH=$PATH:$IUSDIR/tools/bin/64bit:$IUSDIR/tools/bin
+export CDS_BIND_TMP_DD=true
+

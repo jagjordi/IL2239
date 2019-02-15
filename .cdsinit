@@ -53,3 +53,5 @@ else
 ;;) ;; close let
 
 ;; END PDK specific entries do not touch --
+
+envSetVal("ams.envOpts" "connectRulesList" 'string "connectLib;ConnRules_18V_full;connect connectLib;mixedsignal;connect")

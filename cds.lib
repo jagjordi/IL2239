@@ -1,4 +1,9 @@
+# File Created by Jordi Altayo Gonzalez at Fri Feb 15 14:01:55 2019
+# assisted by CdsLibEditor
 ## PDK specific entries do not touch --
 INCLUDE $LF150_HOME/tools/setup/cds.lib
 ## END PDK specific entries do not touch --
 DEFINE comparator /afs/kth.se/home/j/o/jordiag/IL2239/milestone1/comparator
+DEFINE connectLib ./connectLib
+DEFINE SAR /afs/kth.se/home/j/o/jordiag/IL2239/SAR
+DEFINE IL2239_SAR_ADC /afs/kth.se/home/j/o/jordiag/IL2239/IL2239_SAR_ADC

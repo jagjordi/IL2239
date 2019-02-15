@@ -5,12 +5,12 @@
 #
 LockStakeVersion               1.1
 LoginName                      jordiag
-HostName                       unix-206-10.sal.ict.kth.se
-ProcessIdentifier              8561
-ProcessCreationTime_UTC        1548929244
-ProcessCreationTime_Readable   Thu Jan 31 11:07:24 2019 CET
+HostName                       unix-206-11.sal.ict.kth.se
+ProcessIdentifier              18598
+ProcessCreationTime_UTC        1550242181
+ProcessCreationTime_Readable   Fri Feb 15 14:49:41 2019 UTC
 AppIdentifier                  /afs/kth.se/pkg/designkits/ekt/cdc/installs/IC615/tools/dfII/bin/64bit/libManager
 OSType                         lnx86
 ReasonForPlacingEditLock       log file
 FilePathUsedToEditLock         /afs/kth.se/home/j/o/jordiag/IL2239/libManager.log
-TimeEditLocked                 Thu Jan 31 11:07:24 2019 CET
+TimeEditLocked                 Fri Feb 15 14:49:41 2019 UTC
