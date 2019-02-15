@@ -1,8 +1,6 @@
 //Verilog HDL for "IL2239_SAR_ADC", "SAR4" "functional"
 
-module SAR4 ( reset, clock, comp, start, SW_inp, SW_ref, DAC_out4, DAC_out3, DAC_out2, DAC_out1, DAC_out0, out4, out3, out2, out1, out0, eoc );
-
-
+module SAR4 ( reset, clock, comp, start, SW_inp, SW_ref, DAC_out4, DAC_out3, DAC_out2, DAC_out1, DAC_out0, out4, out3, out2, out1, out0, eoc, dclk );
 
   output eoc;
   output SW_inp;
@@ -17,6 +15,8 @@ module SAR4 ( reset, clock, comp, start, SW_inp, SW_ref, DAC_out4, DAC_out3, DAC
   output DAC_out2;
   output DAC_out3;
   output DAC_out4;
+
+  output dclk;
 
   input start;
   input reset;
@@ -49,6 +49,8 @@ parameter [2:0] endConv = 3'b111;
 
 reg [2:0] state;	//	Current State
 reg [2:0] next; 	//	Next State
+
+assign dclk = clock;
 
 always @(negedge clock)
 begin
@@ -114,6 +116,7 @@ begin
 		SW_inp_reg = 1'b0;
 		SW_ref = 1'b1;
 		next = conv3;
+                end
 	conv3 : begin
 		DAC_out0 = 1'b0;
 		DAC_out1 = 1'b0;
