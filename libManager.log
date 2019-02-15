@@ -1,6 +1,6 @@
 \o Program:		@(#)$CDS: libManager version 32.10 06/27/2012 10:34 (cat91amd) $
 \o Sub version:		sub-version  s009 
-\o Arguments:		-mpssession virtuoso23208 -mpshost unix-206-11.sal.ict.kth.se 
+\o Arguments:		-mpssession virtuoso24553 -mpshost unix-206-11.sal.ict.kth.se 
 \o Working Directory:	unix-206-11.sal.ict.kth.se:/afs/kth.se/home/j/o/jordiag/IL2239
 \o 64-bit offsets
 \o Qt version: 		4.5.3
@@ -19,85 +19,12 @@
 \a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
 \a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
 \a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->cellListBox->value = "SAR4"
-\a cdsLibManager->cellLineEdit->value = "SAR4"
-\a cdsLibManager->viewListBox->value = "functional"
-\a cdsLibManager->viewLineEdit->value = "functional"
-\o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->libListBox->value = nil
-\a cdsLibManager->cellListBox->value = nil
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->cellLineEdit->value = ""
-\a cdsLibManager->libLineEdit->value = ""
-\w Warning: The directory: '/afs/kth.se/home/j/o/jordiag/IL2239/SAR' does not exist
-\w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
-\a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
-\a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
-\a cdsLibManager->cellListBox->value = "SAR4"
-\a cdsLibManager->cellLineEdit->value = "SAR4"
-\a cdsLibManager->viewListBox->value = "functional"
-\a cdsLibManager->viewLineEdit->value = "functional"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "functional"
-\a cdsLibManager->viewLineEdit->value = "functional"
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->viewListBox->value = "symbol"
-\a cdsLibManager->viewLineEdit->value = "symbol"
-\a cdsLibManager->cellListBox->value = "SAR4_ADC_sim"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->cellListBox->value = "bufferX2"
-\a cdsLibManager->viewListBox->value = "symbol"
-\a cdsLibManager->viewLineEdit->value = "symbol"
-\a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a nrListItemAction(cdsLibManager->cellListBox 4 0)
-\o MPS request: edit design
-\a cdsLibManager->libListBox->value = nil
-\a cdsLibManager->cellListBox->value = nil
-\a cdsLibManager->libLineEdit->value = ""
-\w Warning: The directory: '/afs/kth.se/home/j/o/jordiag/IL2239/SAR' does not exist
-\w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
-\a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
-\a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
-\a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->cellLineEdit->value = "SAR4_sim"
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->cellListBox->value = "SAR4"
-\a cdsLibManager->viewListBox->value = "symbol"
-\a cdsLibManager->viewLineEdit->value = "symbol"
-\a cdsLibManager->cellLineEdit->value = "SAR4"
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->cellLineEdit->value = "SAR4_sim"
+\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
+\a cdsLibManager->cellLineEdit->value = "SAR4_ADC_FFT_sin"
 \a cdsLibManager->viewListBox->value = "schematic"
 \a cdsLibManager->viewLineEdit->value = "schematic"
 \o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 2 0)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "schematic"
-\o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 2 0)
-\a nrSetCurrentWindow(cdsLibManager)
-\a cdsLibManager->viewListBox->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = "ams_state1"
-\o MPS request: edit design
-\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a nrListItemAction(cdsLibManager->gdmXTView 3 0)
 \a nrSetCurrentWindow(cdsLibManager)
 \a cdsLibManager->libListBox->value = nil
 \a cdsLibManager->cellListBox->value = nil
@@ -109,32 +36,174 @@
 \w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
 \a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
 \a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
-\a cdsLibManager->cellListBox->value = "SAR4_sim"
-\a cdsLibManager->cellLineEdit->value = "SAR4_sim"
-\a cdsLibManager->viewListBox->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = ""
-\a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = "ams_state1"
-\a nrSetCurrentWindow(cdsLibManager)
 \a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
+\a cdsLibManager->cellLineEdit->value = "SAR4_ADC_FFT_sin"
+\a cdsLibManager->viewListBox->value = "schematic"
+\a cdsLibManager->viewLineEdit->value = "schematic"
 \a cdsLibManager->viewLineEdit->value = ""
 \a cdsLibManager->viewListBox->value = nil
-\a cdsLibManager->viewListBox->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = "ams_state1"
+\a cdsLibManager->viewListBox->value = "schematic"
+\a cdsLibManager->viewLineEdit->value = "schematic"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "schematic"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 3 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = "DAC4_SH"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = "DAC4_SH"
+\a cdsLibManager->viewListBox->value = "schematic1"
+\a cdsLibManager->viewLineEdit->value = "schematic1"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "schematic1"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->viewListBox->value = "symbol"
+\a cdsLibManager->viewLineEdit->value = "symbol"
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "symbol"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 1 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a lmgrLogShowPopup("mainListPopup2" 62 26 2 "symbol")
+\a lmgrLogShowPopup("mainListPopup2" 45 25 2 "symbol")
+\a cdsLibManager->editDeleteButton->value = t
+\a deleteForm->deleteBothRadioButton->value = t
+\a deleteForm->deleteFilterEdit->value = "*"
+\a deleteForm->notDeleteFilterEdit->value = "*"
+\a nrSetWindowVisibility(deleteForm "show")
+\a nrSetCurrentWindow(deleteForm)
+\a nrResizeWindow(deleteForm list(632 313 627 425))
+\a deleteForm->OK->value = t
+\o QUESTION (CLM-199): The following 1 items are marked for deletion.  Are you sure?
+\a nrSetWindowVisibility(mcMBXDLG "show")
+\a nrSetCurrentWindow(mcMBXDLG)
+\a nrResizeWindow(mcMBXDLG list(764 396 362 254))
+\a mcMBXDLG->pushButton1->value = t
+\o Deleting view "symbol" from cell "DAC4_SH" in library "IL2239_SAR_ADC".
+\a nrSetWindowVisibility(workingDialogForm "show")
+\a nrSetCurrentWindow(deleteForm)
+\a nrSetCurrentWindow(cdsLibManager)
+\o Deleted cellview 'IL2239_SAR_ADC/DAC4_SH/symbol'.
+\a nrSetCurrentWindow(workingDialogForm)
+\o Deletion of 1 view done.
+\a cdsLibManager->libListBox->value = nil
 \a cdsLibManager->cellListBox->value = nil
 \a cdsLibManager->viewLineEdit->value = ""
 \a cdsLibManager->viewListBox->value = nil
-\a nrListItemAction(cdsLibManager->cellListBox 2 0)
-\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
-\a cdsLibManager->viewListBox->value = "ams_state1"
-\a cdsLibManager->viewLineEdit->value = "ams_state1"
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/afs/kth.se/home/j/o/jordiag/IL2239/SAR' does not exist
+\w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
+\a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
+\a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
+\a cdsLibManager->cellListBox->value = "DAC4_SH"
+\a cdsLibManager->cellLineEdit->value = "DAC4_SH"
+\a cdsLibManager->viewListBox->value = "schematic1"
+\a cdsLibManager->viewLineEdit->value = "schematic1"
 \a cdsLibManager->viewLineEdit->value = ""
 \a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "schematic1"
+\a cdsLibManager->viewLineEdit->value = "schematic1"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrResizeWindow(workingDialogForm list(2 26 281 131))
+\a cdsLibManager->viewListBox->value = "schematic1"
+\a cdsLibManager->viewLineEdit->value = "schematic1"
 \o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->viewListBox->value = "symbol"
+\a cdsLibManager->viewLineEdit->value = "symbol"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 1 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "symbol"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 1 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = "SAR4"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "symbol"
+\a cdsLibManager->viewLineEdit->value = "symbol"
+\a cdsLibManager->cellLineEdit->value = "SAR4"
+\a cdsLibManager->viewListBox->value = "functional"
+\a cdsLibManager->viewLineEdit->value = "functional"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a nrListItemAction(cdsLibManager->cellListBox 2 0)
+\o MPS request: edit design
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/afs/kth.se/home/j/o/jordiag/IL2239/SAR' does not exist
+\w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
+\a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
+\a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
+\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
 \a cdsLibManager->cellLineEdit->value = "SAR4_ADC_FFT_sin"
 \a nrSetCurrentWindow(cdsLibManager)
-\a nrSetWindowVisibility(cdsLibManager "hide")
-\o libManager is exiting.
-\a exit(0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = nil
+\a nrListItemAction(cdsLibManager->cellListBox 2 0)
+\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
+\o MPS request: edit design
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/afs/kth.se/home/j/o/jordiag/IL2239/SAR' does not exist
+\w 	but was defined in libFile '/afs/kth.se/home/j/o/jordiag/IL2239/cds.lib' for Lib 'SAR'.
+\a cdsLibManager->libListBox->value = "IL2239_SAR_ADC"
+\a cdsLibManager->libLineEdit->value = "IL2239_SAR_ADC"
+\a cdsLibManager->cellListBox->value = "SAR4_ADC_FFT_sin"
+\a cdsLibManager->cellLineEdit->value = "SAR4_ADC_FFT_sin"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->viewListBox->value = "schematic"
+\a cdsLibManager->viewLineEdit->value = "schematic"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 3 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = "DAC4_SH"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellListBox->value = "SAR4"
+\a cdsLibManager->cellLineEdit->value = "SAR4"
+\a cdsLibManager->viewListBox->value = "functional"
+\a cdsLibManager->viewLineEdit->value = "functional"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 0 0)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
