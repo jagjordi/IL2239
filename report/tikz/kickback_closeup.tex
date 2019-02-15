@@ -1,0 +1,26 @@
+\begin{tikzpicture}[trim axis left, trim axis right, new spy style]
+	   \begin{axis}[
+	     x filter/.code={\pgfmathdivide{#1}{1e-9}},
+	     width=\textwidth, height=0.6\textwidth,
+	     enlarge x limits=0,
+	     xlabel=\si{\ns},
+	     ylabel=\si{\V},
+	     legend cell align={left},
+	     grid=both, minor grid style=dotted, minor y tick num = 4, minor x tick num=3,
+	    ]
+	    \addplot [thick, orange] table[x=/CLK X, y=/CLK Y, col sep=comma] {./data/m1_kickback.csv};
+	    \addlegendentry{Clock};
+	    \addplot [thick, red] table[x=/input X, y=/input Y, col sep=comma] {./data/m1_kickback.csv};
+	    \addlegendentry{Input};
+	    \addplot [thick, blue] table[x=/reference X, y=/reference Y, col sep=comma] {./data/m1_kickback.csv};
+	    \addlegendentry{Reference};
+	    \addplot [thick, green] table[x=/outn X, y=/outn Y, col sep=comma] {./data/m1_kickback.csv};
+	    \addlegendentry{Output};
+	    \coordinate (spypoint) at (axis cs:5.1,0.95);
+	    \coordinate (spyloc) at (axis cs:7,0.3);
+	    \coordinate (spypoint2) at (axis cs:15.1,0.45);
+	    \coordinate (spyloc2) at (axis cs:12,1.1);
+	   \end{axis}
+	   \spy[size=2cm] on (spypoint) in node at (spyloc);
+	   \spy[size=2cm] on (spypoint2) in node at (spyloc2);
+	  \end{tikzpicture}
