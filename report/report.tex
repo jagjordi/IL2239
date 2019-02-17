@@ -23,9 +23,11 @@
 \usepackage{pgfplots}
   \pgfplotsset{compat=1.16}
 \usepackage{circuitikz}
+\usepackage{tikz-timing}
 \usepackage{siunitx}
 \usepackage{minted}
  \setminted{linenos, breaklines}
+\usepackage{caption}
 
 \tikzset{new spy style/.style={spy scope={%
  magnification=5,
@@ -189,13 +191,11 @@ In order to determine the common mode input voltage, we have to look at the samp
  
  In the other hand, when using a signal of 0.1\% of the $V\subb{LSB}$ the comparator was not working as expected, as can be seen in \autoref{fig:noise}. Note that the input signal cannot be seen in the plot since its amplitude was under 1 mV. This is a extermely low value so we dont have to worry about noise effects with this configuration.
  \subsection{Power Consumption}
- To obtain the power consumption of our circuit, we can measure the current that is being drawn from the $V\subb{DD}$ power supply. Using this method we obtain a power consumption of \SI{76.82}{\uW}.
+ To obtain the power consumption of our circuit, we can measure the current that is being drawn from the $V\subb{DD}$ power supply. Since the behaviour of the comaprator is highly dynamic we cant use the DC values of those signals, integration over a period has to be done. Using this method we obtain a power consumption of \SI{76.82}{\uW}.
  \subsection{HDL Description}
- The Verilog-AMS description of the comparator can be seen in the Sample Code 1. To account for the propagation delay we used the functions \texttt{riseTime} and \texttt{fallTime} that are provided by Cadence ADE. We measured a rise time of \SI{574.4}{\ps} and a fall time of \SI{71.03}{\ps}. To simulate this propagation delay we added the delays expressions to the Verilog-AMS code (lines 21 and 29).
- \begin{listing}
-  \caption{Verilog-AMS description of the comparator}
+ The Verilog-AMS description of the comparator can be seen in the Sample Code \ref{lst:comp}. To account for the propagation delay we used the functions \texttt{riseTime} and \texttt{fallTime} that are provided by Cadence ADE. We measured a rise time of \SI{574.4}{\ps} and a fall time of \SI{71.03}{\ps}. To simulate this propagation delay we added the delays expressions to the Verilog-AMS code (lines 21 and 29).
+  \captionof{listing}{Verilog-AMS description of the comparator\label{lst:comp}}
   \inputminted{verilog}{../milestone1/comparator/comp_v2/verilogams/verilog.vams}
- \end{listing}
  
  \subsection{Layout}
  The layout was based on the layout that was provided. We just changed the sizes of the input transistors and adjusted the connections. Te final layout can be seen in \autoref{fig:layout}.
@@ -211,13 +211,66 @@ In order to determine the common mode input voltage, we have to look at the samp
  \setcounter{subsection}{0}
  In this milestone we will choose the reference voltage that the SAR ADC is going to use as well as calculating the resolution of it.
  \subsection{Resolution of the SAR ADC}
+ From the simulation results we got a kickback noise of 7.1 mV, and we know that the kickback noise must be at least half of the LSB. We can write this condition as
  \begin{equation}
-  N\subb{eff}=\frac{\mathrm{SNR}-1.76}{6.02}
+  V\subb{glitch} < \frac{V\subb{full swing}\cdot 0.5}{2^N}
  \end{equation}
+ If we solve this for N, we get
+ \begin{equation}
+  N=\log_2\!\left(\frac{V\subb{full swing}\cdot 0.5}{0.0071}\right)=5.138
+ \end{equation}
+ Which rounded down is 5, which is the maximum resolution that this ADC can support with this comparator.
  \subsection{Voltage reference selection}
- %\section*{Milestone 3}
- %\setcounter{section}{3}
- %\setcounter{subsection}{0}
+ For the voltage reference, we choose $V\subb{ref}=500$ mV. This is the maximum anticipated value on the input. According to the behavioral modeling tutorial, the common mode needs to be half of this. This means we might have to revise our initial choice of $V\subb{cm}=700$ mV as we go along in this process
+ \section*{Milestone 3}
+ \setcounter{section}{3}
+ \setcounter{subsection}{0}
+ For this milestone we need to analyze the behaviour of the sucecssive approximation register and determine the sample rate of the ADC.
+ \subsection{Resolution of the SAR ADC}
+ In order to obtain a resolution of 5 bits, we need to modify the provided Verilog code to adapt it to 5 bits resolution. This modification is achieved by adding a 5th state to the state machine performing the binary search algorithm. This modification can be seen in Sample Code \ref{lst:sar}.
+ 
+  \captionof{listing}{Verilog description of the SAR\label{lst:sar}}
+  \inputminted{verilog}{../IL2239_SAR_ADC/SAR4/functional/verilog.v}
+ 
+ \subsection{Top level simulations}
+ After doing the modifications to the SAR description, we can proceed to perform a top level simulation of all the blocks in our system. To do that we use the testbench seen in \autoref{fig:sar_tb}.  The DAC used in the feedback loop of the SAR ADC (see \autoref{fig:sar}) provided consisted only of 4 bits so an aditional branch of capacitors. The final schematic of the DAC can be seen in \autoref{fig:dac}.\bigskip
+
+ Performing a transient simulation with an input signal and observing the output of the ADC we can see the conversion results and observe the offset between the reconstructed signal and the input signal. This results can be seen in \autoref{fig:sinusoidal-conversion}. To reconstruct the digital signal an ideal DAC was used.
+
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./img/m3_schematic}
+  \caption{SAR testbench}
+  \label{fig:sar_tb}
+ \end{figure}
+
+ \begin{figure}[h]
+  \centering
+  \tikzsetnextfilename{sinusoidal-conversion}
+  \input{tikz/sinusoidal-conversion.tex}
+  \caption{Waveforms from a sinusoidal signal conversion}
+  \label{fig:sinusoidal-conversion}
+ \end{figure}
+
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./img/m3_sar}
+  \caption{DAC Schematic}
+  \label{fig:dac}
+ \end{figure}
+
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./img/m3_sar_closeup}
+  \caption{SAR testbench}
+  \label{fig:dac_cp}
+ \end{figure}
+ \subsection{Sampling Rate}
+ To determine the sampling rate of the ADC we need to analyze the how the convertion is done. The SAR takes $N$ clock samples to converge to a final value and an aditional two clocks are needed for the setteling of the signal and additional logic and reset phases. Thus we can expres the sampling rate of our ADC as.
+ \begin{equation}
+  f\subb{sample} = \frac{f\subb{clk}}{N+2}
+ \end{equation}
+ In our project $f\subb{clk}=\SI{100}{\MHz}$ and $N=5$ so $f\subb{sample}=\SI{14.29}{\MHz}$.
  %\section*{Milestone 4}
  %\setcounter{section}{4}
  %\setcounter{subsection}{0}

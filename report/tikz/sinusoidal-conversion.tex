@@ -1,0 +1,98 @@
+\begin{tikzpicture}[timing/unit=1cm]
+ \begin{axis}[
+   name=analog,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   width=\textwidth, height=0.4\textwidth,
+   enlarge x limits=0,
+   xlabel=\si{\ns},
+   ylabel=\si{\V},
+   legend cell align={left},
+   grid=both, minor grid style=dotted, minor y tick num = 5, minor x tick num=3,
+  ]
+  \addplot [thick, red] table[x=VinX, y=VinY, col sep=comma] {./data/m3_matlab_decimated.csv};
+  \addlegendentry{Input signal};
+  \addplot [thick, blue] table[x=SAR_out_analogX, y=SAR_out_analogY, col sep=comma] {./data/m3_matlab_decimated.csv};
+  \addlegendentry{Output signal};
+ \end{axis}
+ \begin{axis}[
+   name=clk,
+   anchor=north,
+   at={($(analog.south)-(0,8ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel=CLK, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=clkX, y=clkY, col sep=comma] {./data/m3_matlab_clk.csv};
+ \end{axis}
+ \begin{axis}[
+   name=out0,
+   anchor=north,
+   at={($(clk.south)-(0,2ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel={out[0]}, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=out0X, y=out0Y, col sep=comma] {./data/m3_matlab_decimated.csv};
+ \end{axis}
+ \begin{axis}[
+   name=out1,
+   anchor=north,
+   at={($(out0.south)-(0,2ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel={out[1]}, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=out1X, y=out1Y, col sep=comma] {./data/m3_matlab_decimated.csv};
+ \end{axis}
+ \begin{axis}[
+   name=out2,
+   anchor=north,
+   at={($(out1.south)-(0,2ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel={out[2]}, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=out2X, y=out2Y, col sep=comma] {./data/m3_matlab_decimated.csv};
+ \end{axis}
+ \begin{axis}[
+   name=out3,
+   anchor=north,
+   at={($(out2.south)-(0,2ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel={out[3]}, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=out3X, y=out3Y, col sep=comma] {./data/m3_matlab_decimated.csv};
+ \end{axis}
+ \begin{axis}[
+   name=out4,
+   anchor=north,
+   at={($(out3.south)-(0,2ex)$)},
+   width=\textwidth, height=0.15\textwidth,
+   x filter/.code={\pgfmathdivide{#1}{1e-9}},
+   enlarge x limits=0,
+   axis line style={draw=none},
+   tick style={draw=none}, ytick=\empty, xtick=\empty,
+   ylabel={out[4]}, ylabel style={rotate=-90},
+  ]
+  \addplot [thick] table[x=out4X, y=out4Y, col sep=comma] {./data/m3_matlab_decimated.csv};
+ \end{axis}
+ \draw (out4.south west) ++ (0,-10ex) coordinate (en);
+ \timing at (en) {D{00}D{14}D{25}D{29}D{22}D{10}2D{00}D{03}D{15}D{26}D{28}D{22}D{10}0.5D{0}};
+ \draw (en) ++ (0,3ex)node[left] {out[4:0]};
+\end{tikzpicture}

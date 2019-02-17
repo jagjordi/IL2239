@@ -1,5 +1,3 @@
-//Verilog HDL for "IL2239_SAR_ADC", "SAR4" "functional"
-
 module SAR4 ( reset, clock, comp, start, SW_inp, SW_ref, DAC_out4, DAC_out3, DAC_out2, DAC_out1, DAC_out0, out4, out3, out2, out1, out0, eoc, dclk );
 
   output eoc;
